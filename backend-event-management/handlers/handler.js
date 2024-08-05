@@ -1,28 +1,36 @@
-async function addDoc(collection, userModel) {
-  let user = new collection({
+const { User } = require("../models/userModel");
+
+async function addDoc(collectionName, userModel) {
+  let user = new collectionName({
     ...userModel,
   });
   await user.save();
   return user.toObject();
 }
 
-async function getAll(collection) {
-  const users = await collection.find();
+async function getAll(collectionName) {
+  const users = await collectionName.find();
   return users.map((_) => _.toObject());
 }
 
-async function getById(collection, id) {
-  const user = await collection.findById(id);
+async function getById(collectionName, id) {
+  const user = await collectionName.findById(id);
   return user.toObject();
 }
 
-async function updateDoc(collection, id, userModel) {
+async function updateDoc(collectionName, id, userModel) {
   const filter = { _id: id };
-  await collection.findOneAndUpdate(filter, userModel);
+  await collectionName.findOneAndUpdate(filter, userModel);
 }
 
-async function deleteDoc(collection) {
-  await collection.findByIdAndDelete(id);
+async function deleteDoc(collectionName) {
+  await collectionName.findByIdAndDelete(id);
+}
+
+async function userExist(email, password) {
+  const user = await User.findOne({email password});
+  const result = user ? user.toObject() : { message: "wrong credentials" };
+  return result;
 }
 
 // export default { getUsers, getUser };
