@@ -1,0 +1,10 @@
+<p>registration works!</p>
+<h1 class="text-white">{{email}}</h1>
+<div class="form-area text-white">
+  <form [formGroup]="registrationForm"  class="flex flex-col items-center gap-4">
+    <input class="w-1/4 p-2" type="text" placeholder="Full Name" formControlName="fullName" required>
+    <input class="w-1/4 p-2" type="text" placeholder="user name" formControlName="username" required>
+    <input class="w-1/4 p-2" type="password" placeholder="password" formControlName="password" required>
+    <button type="submit" class="p-4 border-2 w-80" (click)="onSubmit()">Submit</button>
+  </form>
+</div>

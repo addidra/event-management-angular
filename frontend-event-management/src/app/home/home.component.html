@@ -1,0 +1,29 @@
+
+  <div class="relative" (keydown.enter)="validateEmail()">
+    <div class="absolute right-0 -top-10">
+      <button class="p-2 rounded-md bg-CPink text-white font-medium w-36" (click)="login()" #email>Sign In</button>
+    </div>
+    <div class="h-[87vh] text-white flex gap-12 justify-center items-center flex-col">
+      <span class="text-5xl font-medium text-center">Share your movie reviews, suggestion and more with friends</span>
+      <span class="text-2xl">Perfect spot for cinephiles</span>
+      <div class="flex gap-12">
+        <form class="example-form">
+          <mat-form-field class="w-96">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+              <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+              <mat-error>Email is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </form>
+        <button
+          (click)="validateEmail()"
+          class="p-4 rounded-md h-14 bg-CPink font-medium w-36"
+          >Get Started
+        </button>
+            </div>
+    </div>
+  </div>
